@@ -68,10 +68,10 @@
 @property (nonatomic) float animationDuration;
 
 // Init
-- (id)initWithPhotos:(NSArray *)photosArray;
+- (id)initWithPhotos:(NSArray<IDMPhoto *> *)photosArray;
 
 // Init (animated from view)
-- (id)initWithPhotos:(NSArray *)photosArray animatedFromView:(UIView*)view;
+- (id)initWithPhotos:(NSArray<IDMPhoto *> *)photosArray animatedFromView:(UIView*)view;
 
 // Reloads the photo browser and refetches data
 - (void)reloadData;

@@ -18,7 +18,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 // Private
 @interface IDMPhotoBrowser () {
 	// Data
-    NSMutableArray *_photos;
+    NSMutableArray<IDMPhoto *> *_photos;
 
 	// Views
 	UIScrollView *_pagingScrollView;

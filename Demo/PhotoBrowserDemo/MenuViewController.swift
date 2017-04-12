@@ -68,32 +68,37 @@ extension MenuViewController {
 		var photo: IDMPhoto
 		
 		if buttonSender?.tag == 101 {
-			let path_photo1l = [Bundle.main.path(forResource: "photo1l", ofType: "jpg")]
-			photo = IDMPhoto.photos(withFilePaths:path_photo1l).first as! IDMPhoto
-			photo.caption = "Grotto of the Madonna"
-			photos.append(photo)
+            if let path_photo1l = Bundle.main.path(forResource: "photo1l", ofType: "jpg") {
+                photo = IDMPhoto.photos(withFilePaths:[path_photo1l]).first as! IDMPhoto
+                photo.caption = "Grotto of the Madonna"
+                photos.append(photo)
+            }
 		}
 		
-		let path_photo3l = [Bundle.main.path(forResource: "photo3l", ofType: "jpg")]
-		photo = IDMPhoto.photos(withFilePaths:path_photo3l).first as! IDMPhoto
-		photo.caption = "York Floods"
-		photos.append(photo)
+        if let path_photo3l = Bundle.main.path(forResource: "photo3l", ofType: "jpg") {
+            photo = IDMPhoto.photos(withFilePaths:[path_photo3l]).first as! IDMPhoto
+            photo.caption = "York Floods"
+            photos.append(photo)
+        }
 		
-		let path_photo2l = [Bundle.main.path(forResource: "photo2l", ofType: "jpg")]
-		photo = IDMPhoto.photos(withFilePaths:path_photo2l).first as! IDMPhoto
-		photo.caption = "The London Eye is a giant Ferris wheel situated on the banks of the River Thames, in London, England."
-		photos.append(photo)
+        if let path_photo2l = Bundle.main.path(forResource: "photo2l", ofType: "jpg") {
+            photo = IDMPhoto.photos(withFilePaths:[path_photo2l]).first as! IDMPhoto
+            photo.caption = "The London Eye is a giant Ferris wheel situated on the banks of the River Thames, in London, England."
+            photos.append(photo)
+        }
 		
-		let path_photo4l = [Bundle.main.path(forResource: "photo4l", ofType: "jpg")]
-		photo = IDMPhoto.photos(withFilePaths:path_photo4l).first as! IDMPhoto
-		photo.caption = "Campervan";
-		photos.append(photo)
+        if let path_photo4l = Bundle.main.path(forResource: "photo4l", ofType: "jpg") {
+            photo = IDMPhoto.photos(withFilePaths:[path_photo4l]).first as! IDMPhoto
+            photo.caption = "Campervan";
+            photos.append(photo)
+        }
 		
 		if buttonSender?.tag == 102 {
-			let path_photo1l = [Bundle.main.path(forResource: "photo1l", ofType: "jpg")]
-			photo = IDMPhoto.photos(withFilePaths:path_photo1l).first as! IDMPhoto
-			photo.caption = "Grotto of the Madonna";
-			photos.append(photo)
+            if let path_photo1l = Bundle.main.path(forResource: "photo1l", ofType: "jpg") {
+                photo = IDMPhoto.photos(withFilePaths:[path_photo1l]).first as! IDMPhoto
+                photo.caption = "Grotto of the Madonna";
+                photos.append(photo)
+            }
 		}
 		
 		// Create and setup browser
@@ -181,31 +186,36 @@ extension MenuViewController {
 		var photo: IDMPhoto
 		
 		if indexPath.section == 0 { // Local photo
-			let path_photo2l = [Bundle.main.path(forResource: "photo2l", ofType: "jpg")]
-			photo = IDMPhoto.photos(withFilePaths:path_photo2l).first as! IDMPhoto
-			photo.caption = "The London Eye is a giant Ferris wheel situated on the banks of the River Thames, in London, England."
-			photos.append(photo)
+            if let path_photo2l = Bundle.main.path(forResource: "photo2l", ofType: "jpg") {
+                photo = IDMPhoto.photos(withFilePaths:[path_photo2l]).first as! IDMPhoto
+                photo.caption = "The London Eye is a giant Ferris wheel situated on the banks of the River Thames, in London, England."
+                photos.append(photo)
+            }
 		}
 		else if indexPath.section == 1 { // Multiple photos
-            let path_photo1l = [Bundle.main.path(forResource: "photo1l", ofType: "jpg")]
-            photo = IDMPhoto.photos(withFilePaths:path_photo1l).first as! IDMPhoto
-            photo.caption = "Grotto of the Madonna"
-            photos.append(photo)
+            if let path_photo1l = Bundle.main.path(forResource: "photo1l", ofType: "jpg") {
+                photo = IDMPhoto.photos(withFilePaths:[path_photo1l]).first as! IDMPhoto
+                photo.caption = "Grotto of the Madonna"
+                photos.append(photo)
+            }
             
-            let path_photo2l = [Bundle.main.path(forResource: "photo2l", ofType: "jpg")]
-            photo = IDMPhoto.photos(withFilePaths:path_photo2l).first as! IDMPhoto
-            photo.caption = "The London Eye is a giant Ferris wheel situated on the banks of the River Thames, in London, England."
-            photos.append(photo)
+            if let path_photo2l = Bundle.main.path(forResource: "photo2l", ofType: "jpg") {
+                photo = IDMPhoto.photos(withFilePaths:[path_photo2l]).first as! IDMPhoto
+                photo.caption = "The London Eye is a giant Ferris wheel situated on the banks of the River Thames, in London, England."
+                photos.append(photo)
+            }
             
-            let path_photo3l = [Bundle.main.path(forResource: "photo3l", ofType: "jpg")]
-            photo = IDMPhoto.photos(withFilePaths:path_photo3l).first as! IDMPhoto
-            photo.caption = "York Floods"
-            photos.append(photo)
+            if let path_photo3l = Bundle.main.path(forResource: "photo3l", ofType: "jpg") {
+                photo = IDMPhoto.photos(withFilePaths:[path_photo3l]).first as! IDMPhoto
+                photo.caption = "York Floods"
+                photos.append(photo)
+            }
             
-            let path_photo4l = [Bundle.main.path(forResource: "photo4l", ofType: "jpg")]
-            photo = IDMPhoto.photos(withFilePaths:path_photo4l).first as! IDMPhoto
-            photo.caption = "Campervan";
-            photos.append(photo)
+            if let path_photo4l = Bundle.main.path(forResource: "photo4l", ofType: "jpg") {
+                photo = IDMPhoto.photos(withFilePaths:[path_photo4l]).first as! IDMPhoto
+                photo.caption = "Campervan";
+                photos.append(photo)
+            }
 		}
 
 		// Create and setup browser
