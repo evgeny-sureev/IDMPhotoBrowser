@@ -48,15 +48,6 @@
 		_photoImageView.backgroundColor = [UIColor clearColor];
 		[self addSubview:_photoImageView];
         
-        CGRect screenBound = [[UIScreen mainScreen] bounds];
-        CGFloat screenWidth = screenBound.size.width;
-        CGFloat screenHeight = screenBound.size.height;
-        
-        if ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationLandscapeLeft || [[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationLandscapeRight) {
-            screenWidth = screenBound.size.height;
-            screenHeight = screenBound.size.width;
-        }
-        
 		// Setup
 		self.backgroundColor = [UIColor clearColor];
 		self.delegate = self;
