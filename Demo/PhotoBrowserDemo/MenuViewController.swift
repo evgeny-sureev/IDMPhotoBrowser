@@ -102,7 +102,6 @@ extension MenuViewController {
 		browser.displayActionButton = false
 		browser.displayArrowButton = true
 		browser.displayCounterLabel = true
-		browser.usePopAnimation = true
 		browser.scaleImage = buttonSender?.currentImage
 		browser.dismissOnTouch = true
 		
@@ -123,7 +122,7 @@ extension MenuViewController {
 		case 0:
 			return 1
 		case 1:
-			return 3
+			return 2
 		case 2:
 			return 0
 		default:
@@ -160,9 +159,7 @@ extension MenuViewController {
 			case 0:
 				cell?.textLabel?.text = "Local photos"
 			case 1:
-				cell?.textLabel?.text = "Photos from Flickr"
-			case 2:
-				cell?.textLabel?.text = "Photos from Flickr - Custom"
+				cell?.textLabel?.text = "Local photos - Custom"
 			default:
 				break
 			}
@@ -190,36 +187,25 @@ extension MenuViewController {
 			photos.append(photo)
 		}
 		else if indexPath.section == 1 { // Multiple photos
-			if indexPath.row == 0 { // Local Photos
-				
-				let path_photo1l = [Bundle.main.path(forResource: "photo1l", ofType: "jpg")]
-				photo = IDMPhoto.photos(withFilePaths:path_photo1l).first as! IDMPhoto
-				photo.caption = "Grotto of the Madonna"
-				photos.append(photo)
-				
-				let path_photo2l = [Bundle.main.path(forResource: "photo2l", ofType: "jpg")]
-				photo = IDMPhoto.photos(withFilePaths:path_photo2l).first as! IDMPhoto
-				photo.caption = "The London Eye is a giant Ferris wheel situated on the banks of the River Thames, in London, England."
-				photos.append(photo)
-				
-				let path_photo3l = [Bundle.main.path(forResource: "photo3l", ofType: "jpg")]
-				photo = IDMPhoto.photos(withFilePaths:path_photo3l).first as! IDMPhoto
-				photo.caption = "York Floods"
-				photos.append(photo)
-				
-				let path_photo4l = [Bundle.main.path(forResource: "photo4l", ofType: "jpg")]
-				photo = IDMPhoto.photos(withFilePaths:path_photo4l).first as! IDMPhoto
-				photo.caption = "Campervan";
-				photos.append(photo)
-			} else if indexPath.row == 1 || indexPath.row == 2 { // Photos from Flickr or Flickr - Custom
-				let photosWithURLArray = [NSURL.init(string: "http://farm4.static.flickr.com/3567/3523321514_371d9ac42f_b.jpg"),
-				                          NSURL.init(string: "http://farm4.static.flickr.com/3629/3339128908_7aecabc34b_b.jpg"),
-				                          NSURL.init(string: "http://farm4.static.flickr.com/3364/3338617424_7ff836d55f_b.jpg"),
-				                          NSURL.init(string: "http://farm4.static.flickr.com/3590/3329114220_5fbc5bc92b_b.jpg")]
-				let photosWithURL: [IDMPhoto] = IDMPhoto.photos(withURLs: photosWithURLArray) as! [IDMPhoto]
-				
-				photos = photosWithURL
-			}
+            let path_photo1l = [Bundle.main.path(forResource: "photo1l", ofType: "jpg")]
+            photo = IDMPhoto.photos(withFilePaths:path_photo1l).first as! IDMPhoto
+            photo.caption = "Grotto of the Madonna"
+            photos.append(photo)
+            
+            let path_photo2l = [Bundle.main.path(forResource: "photo2l", ofType: "jpg")]
+            photo = IDMPhoto.photos(withFilePaths:path_photo2l).first as! IDMPhoto
+            photo.caption = "The London Eye is a giant Ferris wheel situated on the banks of the River Thames, in London, England."
+            photos.append(photo)
+            
+            let path_photo3l = [Bundle.main.path(forResource: "photo3l", ofType: "jpg")]
+            photo = IDMPhoto.photos(withFilePaths:path_photo3l).first as! IDMPhoto
+            photo.caption = "York Floods"
+            photos.append(photo)
+            
+            let path_photo4l = [Bundle.main.path(forResource: "photo4l", ofType: "jpg")]
+            photo = IDMPhoto.photos(withFilePaths:path_photo4l).first as! IDMPhoto
+            photo.caption = "Campervan";
+            photos.append(photo)
 		}
 
 		// Create and setup browser
@@ -227,21 +213,18 @@ extension MenuViewController {
 		browser?.delegate = self
 
 		if indexPath.section == 1 { // Multiple photos
-			if indexPath.row == 1 { // Photos from Flickr
-				browser?.displayCounterLabel = true
-				browser?.displayActionButton = false
-			} else if indexPath.row == 2 { // Photos from Flickr - Custom
-				browser?.actionButtonTitles      = ["Option 1", "Option 2", "Option 3", "Option 4"]
-				browser?.displayCounterLabel     = true
-				browser?.useWhiteBackgroundColor = true
-				browser?.leftArrowImage          = UIImage.init(named: "IDMPhotoBrowser_customArrowLeft.png")
-				browser?.rightArrowImage         = UIImage.init(named: "IDMPhotoBrowser_customArrowRight.png")
-				browser?.leftArrowSelectedImage  = UIImage.init(named: "IDMPhotoBrowser_customArrowLeftSelected.png")
-				browser?.rightArrowSelectedImage = UIImage.init(named: "IDMPhotoBrowser_customArrowRightSelected.png")
-				browser?.doneButtonImage         = UIImage.init(named: "IDMPhotoBrowser_customDoneButton.png")
-				browser?.view.tintColor          = UIColor.orange
-				browser?.progressTintColor       = UIColor.orange
-				browser?.trackTintColor          = UIColor.init(white: 0.8, alpha: 1)
+			if indexPath.row == 1 { // Custom
+                browser?.actionButtonTitles      = ["Option 1", "Option 2", "Option 3", "Option 4"]
+                browser?.displayCounterLabel     = true
+                browser?.useWhiteBackgroundColor = true
+                browser?.leftArrowImage          = UIImage.init(named: "IDMPhotoBrowser_customArrowLeft.png")
+                browser?.rightArrowImage         = UIImage.init(named: "IDMPhotoBrowser_customArrowRight.png")
+                browser?.leftArrowSelectedImage  = UIImage.init(named: "IDMPhotoBrowser_customArrowLeftSelected.png")
+                browser?.rightArrowSelectedImage = UIImage.init(named: "IDMPhotoBrowser_customArrowRightSelected.png")
+                browser?.doneButtonImage         = UIImage.init(named: "IDMPhotoBrowser_customDoneButton.png")
+                browser?.view.tintColor          = UIColor.orange
+                browser?.progressTintColor       = UIColor.orange
+                browser?.trackTintColor          = UIColor.init(white: 0.8, alpha: 1)
 			}
 		}
 		

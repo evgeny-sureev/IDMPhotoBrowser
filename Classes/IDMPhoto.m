@@ -35,7 +35,6 @@
 
 // Properties
 @synthesize underlyingImage = _underlyingImage, 
-photoURL = _photoURL,
 caption = _caption;
 
 #pragma mark Class Methods
@@ -46,10 +45,6 @@ caption = _caption;
 
 + (IDMPhoto *)photoWithFilePath:(NSString *)path {
 	return [[IDMPhoto alloc] initWithFilePath:path];
-}
-
-+ (IDMPhoto *)photoWithURL:(NSURL *)url {
-	return [[IDMPhoto alloc] initWithURL:url];
 }
 
 + (NSArray *)photosWithImages:(NSArray *)imagesArray {
@@ -78,23 +73,6 @@ caption = _caption;
     return photos;
 }
 
-+ (NSArray *)photosWithURLs:(NSArray *)urlsArray {
-    NSMutableArray *photos = [NSMutableArray arrayWithCapacity:urlsArray.count];
-    
-    for (id url in urlsArray) {
-        if ([url isKindOfClass:[NSURL class]]) {
-            IDMPhoto *photo = [IDMPhoto photoWithURL:url];
-            [photos addObject:photo];
-        }
-        else if ([url isKindOfClass:[NSString class]]) {
-            IDMPhoto *photo = [IDMPhoto photoWithURL:[NSURL URLWithString:url]];
-            [photos addObject:photo];
-        }
-    }
-    
-    return photos;
-}
-
 #pragma mark NSObject
 
 - (id)initWithImage:(UIImage *)image {
@@ -107,13 +85,6 @@ caption = _caption;
 - (id)initWithFilePath:(NSString *)path {
 	if ((self = [super init])) {
 		_photoPath = [path copy];
-	}
-	return self;
-}
-
-- (id)initWithURL:(NSURL *)url {
-	if ((self = [super init])) {
-		_photoURL = [url copy];
 	}
 	return self;
 }
@@ -134,21 +105,6 @@ caption = _caption;
         if (_photoPath) {
             // Load async from file
             [self performSelectorInBackground:@selector(loadImageFromFileAsync) withObject:nil];
-        } else if (_photoURL) {
-            // Load async from web (using SDWebImageManager)
-            SDWebImageManager *manager = [SDWebImageManager sharedManager];
-            [manager loadImageWithURL:_photoURL options:SDWebImageRetryFailed|SDWebImageHandleCookies progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-                CGFloat progress = ((CGFloat)receivedSize)/((CGFloat)expectedSize);
-                if (self.progressUpdateBlock) {
-                    self.progressUpdateBlock(progress);
-                }
-            } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
-                if (image) {
-                    self.underlyingImage = image;
-                    [self performSelectorOnMainThread:@selector(imageLoadingComplete) withObject:nil waitUntilDone:NO];
-                }
-            }];
-
         } else {
             // Failed - no source
             self.underlyingImage = nil;
@@ -161,7 +117,7 @@ caption = _caption;
 - (void)unloadUnderlyingImage {
     _loadingInProgress = NO;
 
-	if (self.underlyingImage && (_photoPath || _photoURL)) {
+	if (self.underlyingImage && _photoPath) {
 		self.underlyingImage = nil;
 	}
 }

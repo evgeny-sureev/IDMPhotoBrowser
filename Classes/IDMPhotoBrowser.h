@@ -53,7 +53,6 @@
 @property (nonatomic) BOOL arrowButtonsChangePhotosAnimated;
 
 @property (nonatomic) BOOL forceHideStatusBar;
-@property (nonatomic) BOOL usePopAnimation;
 @property (nonatomic) BOOL disableVerticalSwipe;
 
 @property (nonatomic) BOOL dismissOnTouch;
@@ -73,12 +72,6 @@
 
 // Init (animated from view)
 - (id)initWithPhotos:(NSArray *)photosArray animatedFromView:(UIView*)view;
-
-// Init with NSURL objects
-- (id)initWithPhotoURLs:(NSArray *)photoURLsArray;
-
-// Init with NSURL objects (animated from view)
-- (id)initWithPhotoURLs:(NSArray *)photoURLsArray animatedFromView:(UIView*)view;
 
 // Reloads the photo browser and refetches data
 - (void)reloadData;

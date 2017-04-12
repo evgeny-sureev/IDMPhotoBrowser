@@ -11,8 +11,6 @@
 #import "IDMTapDetectingImageView.h"
 #import "IDMTapDetectingView.h"
 
-#import <DACircularProgress/DACircularProgressView.h>
-
 @class IDMPhotoBrowser, IDMPhoto, IDMCaptionView;
 
 @interface IDMZoomingScrollView : UIScrollView <UIScrollViewDelegate, IDMTapDetectingImageViewDelegate, IDMTapDetectingViewDelegate> {
@@ -24,8 +22,6 @@
     IDMCaptionView *_captionView;
     
 	IDMTapDetectingView *_tapView; // for background taps
-    
-    DACircularProgressView *_progressView;
 }
 
 @property (nonatomic, strong) IDMTapDetectingImageView *photoImageView;
@@ -36,7 +32,6 @@
 - (id)initWithPhotoBrowser:(IDMPhotoBrowser *)browser;
 - (void)displayImage;
 - (void)displayImageFailure;
-- (void)setProgress:(CGFloat)progress forPhoto:(IDMPhoto*)photo;
 - (void)setMaxMinZoomScalesForCurrentBounds;
 - (void)prepareForReuse;
 
